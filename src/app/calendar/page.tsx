@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 const CalendarPage = () => {
@@ -29,7 +30,12 @@ const CalendarPage = () => {
           return (
             <div
               key={day}
-              className={`border-b border-solid border-gray-200 bg-gray-50/80 text-center ${i === 0 ? "text-red-500" : ""} ${i === 6 ? "text-blue-500" : ""} ${i !== 0 && i !== 6 ? "text-gray-500" : ""}`}
+              className={cn(
+                "border-b border-solid border-gray-200 bg-gray-50/80 text-center",
+                i === 0 && "text-red-500",
+                i === 6 && "text-blue-500",
+                i !== 0 && i !== 6 && "text-gray-700",
+              )}
             >
               {day}
             </div>
@@ -41,3 +47,5 @@ const CalendarPage = () => {
 };
 
 export default CalendarPage;
+
+// className={`border-b border-solid border-gray-200 bg-gray-50/80 text-center ${i === 0 ? "text-red-500" : ""} ${i === 6 ? "text-blue-500" : ""} ${i !== 0 && i !== 6 ? "text-gray-500" : ""}`}
