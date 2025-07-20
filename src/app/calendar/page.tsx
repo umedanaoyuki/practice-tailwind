@@ -3,8 +3,10 @@ import React from "react";
 
 const CalendarPage = () => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
-
   const days = Array.from({ length: 35 }, (_, i) => i + 1);
+
+  const today = new Date();
+  const todayDate = today.getDate();
 
   return (
     <div className="flex h-screen flex-col bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
@@ -45,8 +47,23 @@ const CalendarPage = () => {
         })}
         {days.map((day) => {
           return (
-            <div key={day}>
-              <span>{day <= 31 ? day : day - 31}</span>
+            <div
+              key={day}
+              className={cn(
+                "border-r border-b border-solid border-gray-100 p-2",
+                day > 31 ? "bg-gray-50/50" : "bg-white",
+                todayDate === day && "ring-2 ring-purple-400 ring-inset",
+              )}
+            >
+              <span
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full",
+                  todayDate === day &&
+                    "bg-purple-100 font-bold text-purple-600",
+                )}
+              >
+                {day <= 31 ? day : day - 31}
+              </span>
             </div>
           );
         })}
