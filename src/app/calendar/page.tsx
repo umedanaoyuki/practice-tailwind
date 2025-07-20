@@ -4,6 +4,8 @@ import React from "react";
 const CalendarPage = () => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
 
+  const days = Array.from({ length: 35 }, (_, i) => i + 1);
+
   return (
     <div className="flex h-screen flex-col bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
       <header className="flex justify-between bg-white p-4">
@@ -41,11 +43,16 @@ const CalendarPage = () => {
             </div>
           );
         })}
+        {days.map((day) => {
+          return (
+            <div key={day}>
+              <span>{day <= 31 ? day : day - 31}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default CalendarPage;
-
-// className={`border-b border-solid border-gray-200 bg-gray-50/80 text-center ${i === 0 ? "text-red-500" : ""} ${i === 6 ? "text-blue-500" : ""} ${i !== 0 && i !== 6 ? "text-gray-500" : ""}`}
